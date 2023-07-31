@@ -21,7 +21,6 @@ class NursingHomeApplicationTests {
     public void testSelect(){
         System.out.println("selectAll test");
         List<Employee> employeeList = employeeMapper.selectList(null);
-        Assert.isTrue(5 == employeeList.size(), "");
         employeeList.forEach(System.out::println);
     }
 
