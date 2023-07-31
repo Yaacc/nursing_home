@@ -13,7 +13,7 @@ public class CorsConfig {
     public CorsFilter corsFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:8080");    //设置访问源地址
+        corsConfiguration.addAllowedOrigin("http://localhost:8080");    //设置前端访问源地址
         corsConfiguration.addAllowedHeader("*");    //设置访问源请求头
         corsConfiguration.addAllowedMethod("*");    //设置访问源请求方法
         source.registerCorsConfiguration("/**",corsConfiguration);
