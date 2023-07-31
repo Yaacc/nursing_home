@@ -1,6 +1,6 @@
 package cn.ndky.service;
 
-import cn.ndky.entity.Admin;
+import cn.ndky.entity.Employee;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author yaacc
  * @since 2023-07-31
  */
-public interface AdminService extends IService<Admin> {
+public interface IEmployeeService extends IService<Employee> {
 
 }
