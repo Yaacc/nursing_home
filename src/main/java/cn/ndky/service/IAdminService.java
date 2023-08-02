@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author yaacc
  * @since 2023-07-31
  */
-public interface AdminService extends IService<Admin> {
+public interface IAdminService extends IService<Admin> {
 
 }

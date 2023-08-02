@@ -2,7 +2,7 @@ package cn.ndky.service.impl;
 
 import cn.ndky.entity.Admin;
 import cn.ndky.mapper.AdminMapper;
-import cn.ndky.service.AdminService;
+import cn.ndky.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2023-07-31
  */
 @Service
-public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService {
+public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements IAdminService {
 
 }

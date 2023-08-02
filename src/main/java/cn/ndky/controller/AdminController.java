@@ -4,7 +4,7 @@ package cn.ndky.controller;
 import cn.ndky.common.Constants;
 import cn.ndky.config.Result;
 import cn.ndky.entity.Admin;
-import cn.ndky.service.AdminService;
+import cn.ndky.service.IAdminService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/admin")
 public class AdminController{
     @Autowired
-    private AdminService adminService;
+    private IAdminService adminService;
 
     //登入功能
     @PostMapping("/login")
