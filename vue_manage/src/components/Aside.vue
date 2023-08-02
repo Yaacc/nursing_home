@@ -1,3 +1,6 @@
+/**
+ * 侧边栏
+ */
 <template>
   <el-menu
     :default-openeds="['2']"
