@@ -29,7 +29,7 @@ public class AdminController{
     @Autowired
     private AdminService adminService;
 
-    //登入功能
+    //登入功能 adminNumber+password
     @PostMapping("/login")
     public Result<?> login(HttpServletRequest request, @RequestBody Admin adminParam) {
         String password=adminParam.getPassword();
@@ -57,18 +57,21 @@ public class AdminController{
     public Result<?> findAll() {
         return Result.success(adminService.list());
     }
+
     //按id查询
     @GetMapping("/{id}")
-
     public Result<?> getById(@PathVariable Integer id) {
         log.info("查询的id：{}", id);
         return Result.success(adminService.getById(id));
     }
+
+    //按id删除
     @DeleteMapping("/{id}")
     public Result<?> update(@PathVariable Integer id) {
         log.info("将被删除的id：{}", id);
         adminService.removeById(id);
         return Result.success();
     }
+
 }
 
