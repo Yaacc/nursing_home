@@ -1,4 +1,4 @@
-# nursing_home
+# aiBlog
 ##
 [GitHub入门：创建分支branch和使用Pull request](https://blog.csdn.net/qq_39375237/article/details/109832043)
 
