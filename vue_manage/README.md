@@ -1,4 +1,4 @@
-# vue_02_try
+# vue_manage
 
 > A Vue.js project
 
