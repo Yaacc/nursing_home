@@ -3,19 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-.menuHeader{
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-}
-.menuHeader span{
-    margin-left: 10px;
-}
-.menuHeader img{
-    width: 25px;
-}
+
 .el-menu {
     min-height: 100%;
     background-color: #333;
@@ -49,6 +37,6 @@
     float: left;
     margin-right: 10px;
 }
-.header-userInfo{
-    float: right;
-}
+/*.header-userInfo{*/
+/*    float: right;*/
+/*}*/

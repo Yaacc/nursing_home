@@ -33,3 +33,9 @@ export default {
   },
 }
 </script>
+<style scoped>
+
+.header-userInfo{
+  float: right;
+}
+</style>

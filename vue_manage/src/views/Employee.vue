@@ -9,8 +9,8 @@
     <div class="search-input">
       <div class="input-suffix">
         <el-input
-          placeholder="请输入用户名"
-          v-model="userName"
+          placeholder="搜索真实姓名"
+          v-model="RealName"
           clearable>
           <i slot="prefix" class="el-input__icon el-icon-search"></i>
         </el-input>
@@ -19,12 +19,16 @@
     </div>
     <el-table :data="tableData" stripe @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="id" label="ID" width="80"></el-table-column>
-      <el-table-column prop="username" label="用户名" width="140"></el-table-column>
-      <el-table-column prop="nickname" label="昵称" width="130"></el-table-column>
-      <el-table-column prop="tel" label="联系电话" width="150"></el-table-column>
-      <el-table-column prop="email" label="邮箱" width="210"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+      <el-table-column prop="id" label="ID" width="60"></el-table-column>
+      <el-table-column prop="employeeNumber" label="职工编号" width="120"></el-table-column>
+      <el-table-column prop="username" label="用户名" width="120"></el-table-column>
+      <el-table-column prop="realName" label="真实姓名" width="120"></el-table-column>
+      <el-table-column prop="sex" label="性别" width="80"></el-table-column>
+      <el-table-column prop="age" label="年龄" width="80"></el-table-column>
+      <el-table-column prop="phone" label="联系电话" width="160"></el-table-column>
+      <el-table-column prop="idcard" label="身份证号"></el-table-column>
+<!--      <el-table-column prop="email" label="邮箱" width="210"></el-table-column>-->
+<!--      <el-table-column prop="address" label="地址"></el-table-column>-->
       <el-table-column prop="action" label="操作" width="200" fixed="right">
         <template slot-scope="scope">
           <el-button
@@ -52,24 +56,37 @@
         :total="total">
       </el-pagination>
     </div>
+<!--    对话框-->
     <div>
       <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="40%" center>
         <el-form :model="form">
+          <el-form-item label="员工编号" :label-width="formLabelWidth">
+            <el-input v-model="form.employeeNumber" autocomplete="off"></el-input>
+          </el-form-item>
           <el-form-item label="用户名" :label-width="formLabelWidth">
             <el-input v-model="form.username" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="昵称" :label-width="formLabelWidth">
-            <el-input v-model="form.nickname" autocomplete="off"></el-input>
+          <el-form-item label="真实姓名" :label-width="formLabelWidth">
+            <el-input v-model="form.realName" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="性别" :label-width="formLabelWidth">
+            <el-input v-model="form.sex" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="年龄" :label-width="formLabelWidth">
+            <el-input v-model="form.age" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="联系电话" :label-width="formLabelWidth">
-            <el-input v-model="form.tel" autocomplete="off"></el-input>
+            <el-input v-model="form.phone" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="邮箱" :label-width="formLabelWidth">
-            <el-input v-model="form.email" autocomplete="off"></el-input>
+          <el-form-item label="身份证号" :label-width="formLabelWidth">
+            <el-input v-model="form.idcard" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="地址" :label-width="formLabelWidth">
-            <el-input v-model="form.address" autocomplete="off"></el-input>
-          </el-form-item>
+<!--          <el-form-item label="邮箱" :label-width="formLabelWidth">-->
+<!--            <el-input v-model="form.email" autocomplete="off"></el-input>-->
+<!--          </el-form-item>-->
+<!--          <el-form-item label="地址" :label-width="formLabelWidth">-->
+<!--            <el-input v-model="form.address" autocomplete="off"></el-input>-->
+<!--          </el-form-item>-->
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -77,30 +94,35 @@
         </div>
       </el-dialog>
     </div>
+<!--    dialog-->
   </div>
+<!--  main-->
 </template>
 
 <script>
 export default {
-  name: "User",
+  name: "Employee",
   data() {
     return {
       tableData: [],
       total: 0,
       currentPage: 1,
       pageNum: 1,
-      pageSize: 10,
-      // 搜索框
-      userName: '',
+      pageSize: 5,
+      RealName: '', // 搜索框
       dialogFormVisible: false,
       isLoading: false,
       multipleSelection: [],
       form: {
+        employeeNumber: '',
         username: '',
-        nickname: '',
-        tel: '',
-        email: '',
-        address: ''
+        realName: '',
+        sex: '',
+        age: '',
+        phone: '',
+        idcard: ''
+        // email: '',
+        // address: ''
       },
       formLabelWidth: '80px'
     }
@@ -110,16 +132,16 @@ export default {
   },
   methods: {
     load() {
-      this.request.get("/user/page", {
+      this.request.get("/employee/page", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
-          userName: this.userName
+          realName: this.RealName
         }
       }).then(res => {
         console.log(res)
-        this.tableData = res.data
-        this.total = res.total
+        this.tableData = res.data.records
+        this.total = res.data.total
       })
       // fetch("http://localhost/user/page?pageNum="+this.pageNum+"&pageSize="+this.pageSize).then(res=>res.json()).then(res=>{
       //   console.log(res)
@@ -128,7 +150,7 @@ export default {
       // })
     },
     reset(){
-      this.userName=""
+      this.reaName=""
     },
     handleSelectionChange(val) {
         this.multipleSelection = val;
