@@ -57,10 +57,10 @@ public class AdminController{
 
     //分页查询
     @GetMapping("/page")
-    public Result<?> findPage(@RequestParam(defaultValue = "1") Integer PageNum,
-                              @RequestParam(defaultValue = "2") Integer PageSize,
+    public Result<?> findPage(@RequestParam(defaultValue = "") Integer pageNum,
+                              @RequestParam(defaultValue = "") Integer pageSize,
                               @RequestParam(defaultValue = "") String realName){
-        IPage<Admin> page = new Page<>(PageNum,PageSize);
+        IPage<Admin> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
         if(!(realName==null||"".equals(realName))){
             queryWrapper.like("realName",realName);
